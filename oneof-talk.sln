@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo-exceptions", "demo-exceptions", "{CCAFDA66-0B5D-4D29-84B9-984477C48802}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo-oneof", "demo-oneof", "{3576C599-67D7-4A06-9CBA-D228015C67DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ExceptionBased.WebApi", "demo-exceptions\Demo.ExceptionBased.WebApi\Demo.ExceptionBased.WebApi.csproj", "{C58C8310-C7FF-4A3F-807F-43B043017BF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ExceptionBased.MediatorHandlers", "demo-exceptions\Demo.ExceptionBased.MediatorHandlers\Demo.ExceptionBased.MediatorHandlers.csproj", "{1C696F91-17AA-46C5-A060-AFA309AD2666}"
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FBA7D426-3C73-4E25-A266-1E3FA7DC512B}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C58C8310-C7FF-4A3F-807F-43B043017BF6} = {CCAFDA66-0B5D-4D29-84B9-984477C48802}
+		{1C696F91-17AA-46C5-A060-AFA309AD2666} = {CCAFDA66-0B5D-4D29-84B9-984477C48802}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C58C8310-C7FF-4A3F-807F-43B043017BF6}.asdf|Any CPU.ActiveCfg = asdf|Any CPU
+		{C58C8310-C7FF-4A3F-807F-43B043017BF6}.asdf|Any CPU.Build.0 = asdf|Any CPU
+		{1C696F91-17AA-46C5-A060-AFA309AD2666}.asdf|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C696F91-17AA-46C5-A060-AFA309AD2666}.asdf|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		asdf|Any CPU = asdf|Any CPU
+	EndGlobalSection
+EndGlobal
