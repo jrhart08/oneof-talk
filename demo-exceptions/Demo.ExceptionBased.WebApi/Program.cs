@@ -14,14 +14,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var assemblyMarkers = new[] { typeof(ExceptionMediatorHandlersRef) };
-
-builder.Services.AddMediatR(assemblyMarkers);
-
-foreach (var marker in assemblyMarkers)
-{
-    builder.Services.AddValidatorsFromAssemblyContaining(marker);
-}
+builder.Services.AddMediatR(
+    typeof(ExceptionMediatorHandlersRef)
+);
 
 var app = builder.Build();
 

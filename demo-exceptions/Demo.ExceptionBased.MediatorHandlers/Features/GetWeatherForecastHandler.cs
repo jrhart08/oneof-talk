@@ -14,24 +14,19 @@ public class GetWeatherForecastHandler : IRequestHandler<GetWeatherForecastReque
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
 
-    readonly IValidator<GetWeatherForecastRequest> _validator;
+    readonly GetWeatherForecastRequestValidator _validator = new();
 
-    public GetWeatherForecastHandler(IValidator<GetWeatherForecastRequest> validator)
-    {
-        _validator = validator;
-    }
-    
     public async Task<GetWeatherForecastResponse> Handle(GetWeatherForecastRequest request, CancellationToken cancellationToken)
     {
         await _validator.ValidateAndThrowAsync(request, cancellationToken);
         
         var dailyForecasts = Enumerable
-            .Range(1, request.Days!.Value)
+            .Range(0, request.Days!.Value)
             .Select(index => new GetWeatherForecastResponse.Forecast
             {
                 Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+                TemperatureC = GetRandomTemp(),
+                Summary = GetRandomSummary()
             })
             .ToList();
 
@@ -40,4 +35,8 @@ public class GetWeatherForecastHandler : IRequestHandler<GetWeatherForecastReque
             DailyForecasts = dailyForecasts,
         };
     }
+
+    static int GetRandomTemp() => Random.Shared.Next(-20, 55);
+
+    static string GetRandomSummary() => Summaries[Random.Shared.Next(Summaries.Length)];
 }
