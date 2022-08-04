@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ExceptionBased.WebApi"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ExceptionBased.MediatorHandlers", "demo-exceptions\Demo.ExceptionBased.MediatorHandlers\Demo.ExceptionBased.MediatorHandlers.csproj", "{1C696F91-17AA-46C5-A060-AFA309AD2666}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.OneOf.WebApi", "demo-oneof\Demo.OneOf.WebApi\Demo.OneOf.WebApi.csproj", "{15773F2A-CCE0-4692-B08B-EC2EB62C88D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.OneOf.MediatorHandlers", "demo-oneof\Demo.OneOf.MediatorHandlers\Demo.OneOf.MediatorHandlers.csproj", "{F9C69523-622F-491A-A309-E454D5EA0BD7}"
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -21,12 +25,18 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C58C8310-C7FF-4A3F-807F-43B043017BF6} = {CCAFDA66-0B5D-4D29-84B9-984477C48802}
 		{1C696F91-17AA-46C5-A060-AFA309AD2666} = {CCAFDA66-0B5D-4D29-84B9-984477C48802}
+		{15773F2A-CCE0-4692-B08B-EC2EB62C88D3} = {3576C599-67D7-4A06-9CBA-D228015C67DB}
+		{F9C69523-622F-491A-A309-E454D5EA0BD7} = {3576C599-67D7-4A06-9CBA-D228015C67DB}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C58C8310-C7FF-4A3F-807F-43B043017BF6}.asdf|Any CPU.ActiveCfg = asdf|Any CPU
 		{C58C8310-C7FF-4A3F-807F-43B043017BF6}.asdf|Any CPU.Build.0 = asdf|Any CPU
 		{1C696F91-17AA-46C5-A060-AFA309AD2666}.asdf|Any CPU.ActiveCfg = Debug|Any CPU
 		{1C696F91-17AA-46C5-A060-AFA309AD2666}.asdf|Any CPU.Build.0 = Debug|Any CPU
+		{15773F2A-CCE0-4692-B08B-EC2EB62C88D3}.asdf|Any CPU.ActiveCfg = Debug|Any CPU
+		{15773F2A-CCE0-4692-B08B-EC2EB62C88D3}.asdf|Any CPU.Build.0 = Debug|Any CPU
+		{F9C69523-622F-491A-A309-E454D5EA0BD7}.asdf|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9C69523-622F-491A-A309-E454D5EA0BD7}.asdf|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		asdf|Any CPU = asdf|Any CPU

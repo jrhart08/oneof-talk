@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using FluentValidation;
 using MediatR;
+using OneOf;
 
-namespace Demo.ExceptionBased.MediatorHandlers.Features;
-
-public class GetWeatherForecastRequest : IRequest<GetWeatherForecastResponse>
+namespace Demo.OneOf.MediatorHandlers.Features.GetWeatherForecast;
+public class GetWeatherForecastRequest : IRequest<OneOf<GetWeatherForecastResponse, ValidationException>>
 {
     public int? Days { get; set; } = 7;
 }

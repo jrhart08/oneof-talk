@@ -4,10 +4,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
+using OneOf;
 
-namespace Demo.ExceptionBased.MediatorHandlers.Features;
+namespace Demo.OneOf.MediatorHandlers.Features.GetWeatherForecast;
 
-public class GetWeatherForecastHandler : IRequestHandler<GetWeatherForecastRequest, GetWeatherForecastResponse>
+public class GetWeatherForecastHandler : IRequestHandler<GetWeatherForecastRequest, OneOf<GetWeatherForecastResponse, ValidationException>>
 {
     static readonly string[] Summaries =
     {
@@ -16,9 +17,11 @@ public class GetWeatherForecastHandler : IRequestHandler<GetWeatherForecastReque
 
     readonly GetWeatherForecastRequestValidator _validator = new();
 
-    public async Task<GetWeatherForecastResponse> Handle(GetWeatherForecastRequest request, CancellationToken cancellationToken)
+    public async Task<OneOf<GetWeatherForecastResponse, ValidationException>> Handle(GetWeatherForecastRequest request, CancellationToken cancellationToken)
     {
-        await _validator.ValidateAndThrowAsync(request, cancellationToken);
+        var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+        if (!validationResult.IsValid)
+            return new ValidationException(validationResult.Errors);
         
         var dailyForecasts = Enumerable
             .Range(0, request.Days!.Value)

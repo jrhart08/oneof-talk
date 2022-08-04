@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Demo.ExceptionBased.MediatorHandlers.Features;
-
+namespace Demo.OneOf.MediatorHandlers.Features.GetWeatherForecast;
 public class GetWeatherForecastRequestValidator : AbstractValidator<GetWeatherForecastRequest>
 {
     public GetWeatherForecastRequestValidator()
