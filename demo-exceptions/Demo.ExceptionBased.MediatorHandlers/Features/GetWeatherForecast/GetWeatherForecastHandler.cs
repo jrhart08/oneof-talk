@@ -18,11 +18,7 @@ public class GetWeatherForecastHandler : IRequestHandler<GetWeatherForecastReque
 
     public async Task<GetWeatherForecastResponse> Handle(GetWeatherForecastRequest request, CancellationToken cancellationToken)
     {
-        var validationResult = await _validator.ValidateAsync(request, cancellationToken);
-        if (!validationResult.IsValid)
-        {
-            throw new ValidationException(validationResult.Errors);
-        }
+        await _validator.ValidateAndThrowAsync(request, cancellationToken);
 
         if (IsWeatherProviderDown())
         {
