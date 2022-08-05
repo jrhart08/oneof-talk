@@ -11,6 +11,7 @@ using OneOfResponse = Demo.OneOf.MediatorHandlers.Features.GetWeatherForecast.Ge
 using ExceptionBasedHandler = Demo.ExceptionBased.MediatorHandlers.Features.GetWeatherForecast.GetWeatherForecastHandler;
 using ExceptionBasedRequest = Demo.ExceptionBased.MediatorHandlers.Features.GetWeatherForecast.GetWeatherForecastRequest;
 using ExceptionBasedResponse = Demo.ExceptionBased.MediatorHandlers.Features.GetWeatherForecast.GetWeatherForecastResponse;
+using Demo.OneOf.MediatorHandlers.Features.GetWeatherForecast;
 
 namespace Demo.Benchmarks;
 
@@ -34,7 +35,7 @@ public class DemoBenchmarks
     }
 
     [Benchmark]
-    public async Task<OneOf<OneOfResponse, ValidationException>> OneOfBenchmark()
+    public async Task<OneOfResponse> OneOfBenchmark()
     {
         var request = new OneOfRequest { Days = 100 };
 
@@ -42,6 +43,7 @@ public class DemoBenchmarks
 
         return result.Match(
             forecast => forecast,
+            err => new OneOfResponse(),
             err => new OneOfResponse()
         );
     }
