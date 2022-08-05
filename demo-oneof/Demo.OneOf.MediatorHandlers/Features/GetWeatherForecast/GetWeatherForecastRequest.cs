@@ -5,9 +5,10 @@ using MediatR;
 using OneOf;
 
 namespace Demo.OneOf.MediatorHandlers.Features.GetWeatherForecast;
+
 public class GetWeatherForecastRequest : IRequest<OneOf<GetWeatherForecastResponse, ValidationException>>
 {
-    public int? Days { get; set; } = 7;
+    public int? Days { get; init; } = 7;
 }
 
 public class GetWeatherForecastResponse

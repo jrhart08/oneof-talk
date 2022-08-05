@@ -5,7 +5,7 @@ using MediatR;
 namespace Demo.ExceptionBased.MediatorHandlers.Features.GetWeatherForecast;
 public class GetWeatherForecastRequest : IRequest<GetWeatherForecastResponse>
 {
-    public int? Days { get; set; } = 7;
+    public int? Days { get; init; } = 7;
 }
 
 public class GetWeatherForecastResponse

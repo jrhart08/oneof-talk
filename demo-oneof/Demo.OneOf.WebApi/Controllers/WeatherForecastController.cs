@@ -1,7 +1,5 @@
-using System.Linq;
 using System.Threading.Tasks;
 using Demo.OneOf.MediatorHandlers.Features.GetWeatherForecast;
-using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,7 +7,7 @@ namespace Demo.OneOf.WebApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+public class WeatherForecastController : MyBaseController
 {
     readonly IMediator _mediator;
 
@@ -25,12 +23,6 @@ public class WeatherForecastController : ControllerBase
     {
         var response = await _mediator.Send(request);
 
-        return response.Match<IActionResult>(
-            forecast => Ok(forecast),
-            exception => BadRequest(exception.Errors.Select(err => new
-            {
-                err.PropertyName,
-                err.ErrorMessage,
-            })));
+        return ToResult(response);
     }
 }

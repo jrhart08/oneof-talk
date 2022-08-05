@@ -8,5 +8,4 @@ public class Program
     {
         var summary = BenchmarkRunner.Run(typeof(Program).Assembly);
     }
-    
 }

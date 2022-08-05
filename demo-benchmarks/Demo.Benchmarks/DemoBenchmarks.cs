@@ -1,8 +1,8 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
 using FluentValidation;
 using OneOf;
+using System.Threading;
+using System.Threading.Tasks;
 
 using OneOfHandler = Demo.OneOf.MediatorHandlers.Features.GetWeatherForecast.GetWeatherForecastHandler;
 using OneOfRequest = Demo.OneOf.MediatorHandlers.Features.GetWeatherForecast.GetWeatherForecastRequest;
