@@ -8,7 +8,7 @@ using OneOf;
 
 namespace Demo.OneOf.MediatorHandlers.Features.GetWeatherForecast;
 
-public class GetWeatherForecastHandler : IRequestHandler<GetWeatherForecastRequest, OneOf<GetWeatherForecastResponse, ValidationException>>
+public class GetWeatherForecastHandler : IRequestHandler<GetWeatherForecastRequest, OneOf<GetWeatherForecastResponse, ValidationException, WeatherProviderDownException>>
 {
     static readonly string[] Summaries =
     {
@@ -17,11 +17,18 @@ public class GetWeatherForecastHandler : IRequestHandler<GetWeatherForecastReque
 
     readonly GetWeatherForecastRequestValidator _validator = new();
 
-    public async Task<OneOf<GetWeatherForecastResponse, ValidationException>> Handle(GetWeatherForecastRequest request, CancellationToken cancellationToken)
+    public async Task<OneOf<GetWeatherForecastResponse, ValidationException, WeatherProviderDownException>> Handle(GetWeatherForecastRequest request, CancellationToken cancellationToken)
     {
         var validationResult = await _validator.ValidateAsync(request, cancellationToken);
         if (!validationResult.IsValid)
+        {
             return new ValidationException(validationResult.Errors);
+        }
+
+        if (IsWeatherProviderDown())
+        {
+            return new WeatherProviderDownException();
+        }
         
         var dailyForecasts = Enumerable
             .Range(0, request.Days!.Value)
@@ -38,6 +45,8 @@ public class GetWeatherForecastHandler : IRequestHandler<GetWeatherForecastReque
             DailyForecasts = dailyForecasts,
         };
     }
+
+    static bool IsWeatherProviderDown() => Random.Shared.Next(1, 10) == 1;
 
     static int GetRandomTemp() => Random.Shared.Next(-20, 55);
 

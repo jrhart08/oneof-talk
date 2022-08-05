@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using MediatR;
 
 namespace Demo.ExceptionBased.MediatorHandlers.Features.GetWeatherForecast;
+
+public class WeatherProviderDownException : Exception
+{
+
+}
+
 public class GetWeatherForecastRequest : IRequest<GetWeatherForecastResponse>
 {
     public int? Days { get; set; } = 7;

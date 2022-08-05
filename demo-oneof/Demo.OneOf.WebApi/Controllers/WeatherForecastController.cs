@@ -31,6 +31,8 @@ public class WeatherForecastController : ControllerBase
             {
                 err.PropertyName,
                 err.ErrorMessage,
-            })));
+            })),
+            weatherException => StatusCode(503, new { message = "Weather provider is currently down. Please try again" })
+        );
     }
 }

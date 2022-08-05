@@ -18,8 +18,17 @@ public class GetWeatherForecastHandler : IRequestHandler<GetWeatherForecastReque
 
     public async Task<GetWeatherForecastResponse> Handle(GetWeatherForecastRequest request, CancellationToken cancellationToken)
     {
-        await _validator.ValidateAndThrowAsync(request, cancellationToken);
-        
+        var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+        if (!validationResult.IsValid)
+        {
+            throw new ValidationException(validationResult.Errors);
+        }
+
+        if (IsWeatherProviderDown())
+        {
+            throw new WeatherProviderDownException();
+        }
+
         var dailyForecasts = Enumerable
             .Range(0, request.Days!.Value)
             .Select(index => new GetWeatherForecastResponse.Forecast
@@ -35,6 +44,8 @@ public class GetWeatherForecastHandler : IRequestHandler<GetWeatherForecastReque
             DailyForecasts = dailyForecasts,
         };
     }
+
+    static bool IsWeatherProviderDown() => Random.Shared.Next(1, 10) == 1;
 
     static int GetRandomTemp() => Random.Shared.Next(-20, 55);
 

@@ -5,7 +5,13 @@ using MediatR;
 using OneOf;
 
 namespace Demo.OneOf.MediatorHandlers.Features.GetWeatherForecast;
-public class GetWeatherForecastRequest : IRequest<OneOf<GetWeatherForecastResponse, ValidationException>>
+
+public class WeatherProviderDownException : Exception
+{
+
+}
+
+public class GetWeatherForecastRequest : IRequest<OneOf<GetWeatherForecastResponse, ValidationException, WeatherProviderDownException>>
 {
     public int? Days { get; set; } = 7;
 }
